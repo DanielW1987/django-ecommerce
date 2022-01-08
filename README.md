@@ -33,30 +33,28 @@ For python package `psycopg2` you need nevertheless postgres installed on your s
 brew install postgres
 ```
 
-After installation create the file `~/.pg_service.conf` and insert the following content:
+### Environment variables
 
-```shell
-[local_db]
-host=localhost
-user=postgres
-dbname=django-djacket
-port=5432
+Create file `djacket/.env` and insert the following content:
+
+```dotenv
+SECRET_KEY={{ django secret key }}
+DATASOURCE_DATABASE_NAME=django-djacket
+DATASOURCE_HOST=localhost
+DATASOURCE_USERNAME=postgres
+DATASOURCE_PASSWORD=secret
+DATASOURCE_PORT=5432
+DEBUG=True
 ```
 
 The connection details used are from the docker-compose file.
-
-Furthermore, the file `~/.pgpass` must be created with the following content:
-
-```shell
-localhost:*:*:postgres:secret
-```
-
-The connection details used are also from the docker-compose file.
+You can create a django secret key via `https://djecrety.ir/`.
 
 ### Python requirements
 
 ```shell
 pip install psycopg2
+pip install django-environ
 pip install django-rest-framework
 pip install django-cors-headers
 pip install djoser
