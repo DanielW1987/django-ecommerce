@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: django-djacket
+    image: postgres:14.1-alpine
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: django-djacket
+      PGDATA: /var/lib/postgresql/data/db-files/
+    volumes:
+      - type: volume
+        source: django-djacket-db-volume
+        target: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+
+volumes:
+  django-djacket-db-volume:
+    name: django-djacket-db
