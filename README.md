@@ -35,7 +35,7 @@ brew install postgres
 
 ### Environment variables
 
-Create file `djacket/settings/.env` and insert the following content:
+Create file `django-backend/djacket/settings/.env` and insert the following content:
 
 ```dotenv
 SECRET_KEY={{ django secret key }}
